@@ -12,6 +12,10 @@
 
 }
 
+.search-box:hover{
+  box-shadow: 0 0 8px 0 #0090ce inset, 0 0 10px 1px #0090ce;
+}
+
 .product-list ul{
   margin:0px;
   
