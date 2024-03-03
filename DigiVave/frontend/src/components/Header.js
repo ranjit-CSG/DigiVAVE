@@ -11,7 +11,7 @@ function Header({ onSearch }) {
 
   return (
     <header className="App-header">
-      <h3>DigiVAVEhhjjjh</h3>
+      <h3>DigiVAVE</h3>
       <input
         type="text"
         className="search-box"
