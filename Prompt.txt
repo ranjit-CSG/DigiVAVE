@@ -1,0 +1,25 @@
+ok, so i am making web app using react js. Here may be sql and some part of node js will be used. I am giving a small description bellow, about the project. give me an idea how to do that.
+
+Description-
+
+On the 1st page(Landing Page) :-
+On the top of the screen there will be a header, where on the left side paghe name will be written and on the write side search button will be there.
+On the footer makers name will be there.
+on the main content part. there will be a list of products. and 2 buttons will be there on the right side of every product. 1 is "View" button and another is "Phases" button. And all the products will be shown from the data base itself. Under the all products, there will be 2 buttons, one is Add product button and another is go to next page button.
+
+This is the first page description, Here i had not mentioned the funtionalities. first we have to make the skeleton, then i will tell other details.
+
+
+data bas design prompt-
+
+I want some idea to design a database in sql. here is the requirement-
+
+in the first page there are some products. every products have to go with some phases. and user will select which phase the product has to go through by checking and un checking the boxes under every phases box.
+
+there are 5 phases, and specific products have to go through some specific phases. like example- 1st product is Apple, and 5 phases are there but it will go only 1st 3rd and 4th phases. and another product is orange and it will go through 2nd, 3rd, fourth and 5th phase.
+
+and every phases have some deliverables. like example, 1st phase has 4 deliverables, 2nd phase has 2 deliverables like that. and here also user will select the deliverables by checking and unchecking the check boxes. Like example, 1st product Apple will go through 1st, 3rd and 4th phase which was selected by user, so here under the 1st phase user is going to check 1st 3 deliverables and on 3rd phase user will select only 3rd deliverable. Like that.
+
+then after selecting the deliverables, on the web app it will show all the selected(Checked boxes only) phases and deliverables on the final view of web page. and when clicking on submit the details will be stored and when user will click on the product apple, it will show all the selected phases, deliverables for the apple.
+
+so tell me how to design the database and tables
