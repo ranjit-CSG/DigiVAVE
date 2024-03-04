@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
+
 
 const ProductList = ({ searchTerm }) => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProducts();
@@ -18,8 +21,14 @@ const ProductList = ({ searchTerm }) => {
     setProducts(result);
   };
 
+  const handlePhasesClick = (productName) => {
+    // Use navigate function to navigate to PhasesPage with selected product name
+    navigate(`/phases/${productName}`);
+  };
+
   return (
     <div className="product-list">
+      <h1>Product List</h1>
       <ul className="captions">
         <li>Product ID</li>
         <li>Product Name</li>
@@ -32,7 +41,12 @@ const ProductList = ({ searchTerm }) => {
               <li>{item.ProductID}</li>
               <li>{item.ProductName}</li>
               <li>
-                <button className="operationsButton selectPhases">Phases</button>
+              <button
+                  className="operationsButton selectPhases"
+                  onClick={() => handlePhasesClick(item.ProductName)}
+                >
+                  Phases
+                </button>
               </li>
             </ul>
           ))}
