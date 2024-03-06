@@ -21,9 +21,22 @@ const ProductList = ({ searchTerm }) => {
     setProducts(result);
   };
 
-  const handlePhasesClick = (productName) => {
-    // Use navigate function to navigate to PhasesPage with selected product name
-    navigate(`/phases/${productName}`);
+  // const handlePhasesClick = (productName) => {
+  //   // Use navigate function to navigate to PhasesPage with selected product name
+  //   navigate(`/phases/${productName}`);
+  // };
+
+  const handlePhasesClick = async (productName) => {
+    // Check if there is data stored in local storage
+    const storedDataKeys = Object.keys(localStorage);
+
+    if (storedDataKeys.includes(productName)) {
+      // Data exists for the selected product, navigate to ViewProduct page
+      navigate(`/viewproduct/${productName}`);
+    } else {
+      // No data, navigate to PhasesPage
+      navigate(`/phases/${productName}`);
+    }
   };
 
   return (

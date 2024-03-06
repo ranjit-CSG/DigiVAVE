@@ -94,7 +94,9 @@ const SelectPhases = ({ selectedProduct }) => {
         <button className="next-button" onClick={handleNextButtonClick}>
           Next
         </button>
-        {showDeliverables && <Deliverables allPhases={selectedPhases} />}
+        {showDeliverables && (
+        <Deliverables allPhases={selectedPhases} selectedProduct={selectedProduct} />
+      )}
       </div>
     </div>
   );

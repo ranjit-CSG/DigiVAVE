@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import ProductList from './components/ProductList';
 import SelectPhases from './components/SelectPhases';
 import PhasesPage from './components/PhasesPage'; // Import PhasesPage
+import ViewProduct from './components/ViewProduct';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           />
           <Route path="/selectphases" element={<SelectPhases />} />
           <Route path="/phases/:productName" element={<PhasesPage />} />
+          <Route path="/viewproduct/:productName" element={<ViewProduct />} />
         </Routes>
       </div>
     </Router>

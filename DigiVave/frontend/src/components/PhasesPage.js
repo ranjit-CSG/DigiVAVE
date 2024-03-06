@@ -6,7 +6,6 @@ import SelectPhases from './SelectPhases';
 
 const PhasesPage = () => {
   const { productName } = useParams();
-
   return (
     <div>
       <Header title={productName} />

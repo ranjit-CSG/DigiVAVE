@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Deliverables = ({ allPhases }) => {
+const Deliverables = ({ allPhases, selectedProduct }) => {
   const [newDeliverables, setNewDeliverables] = useState(
     Object.fromEntries(
       Object.keys(allPhases).map((phase) => [phase, ""])
@@ -85,9 +85,36 @@ const Deliverables = ({ allPhases }) => {
   };
 
   const handleNextButtonClick = () => {
-    // Store the checked or unchecked deliverables data
-    console.log("Deliverables Data:", deliverablesData);
+    // Filter out unchecked phases
+    const selectedPhasesData = Object.fromEntries(
+      Object.entries(allPhases).filter(([phase, isChecked]) => isChecked)
+    );
+  
+    // Create an object to store the selected product, phases, and deliverables
+    const selectedData = {
+      product: selectedProduct,
+      phases: {},
+    };
+  
+    // Iterate through each phase and save its deliverables
+    Object.keys(deliverablesData).forEach((phase) => {
+      // Check if the phase is selected
+      if (selectedPhasesData[phase]) {
+        // Filter out unchecked deliverables
+        const selectedDeliverables = deliverablesData[phase].filter(
+          (deliverable) => deliverable.isChecked
+        );
+  
+        // Save the phase and its selected deliverables in the object
+        selectedData.phases[phase] = selectedDeliverables;
+      }
+    });
+  
+    localStorage.setItem(selectedProduct, JSON.stringify(selectedData));
+    // Log or send the selected data wherever needed
+    console.log('Selected Data:', selectedData);
   };
+  
 
   return (
     <div className="deliverables-container">
