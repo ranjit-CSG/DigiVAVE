@@ -1,47 +1,134 @@
-// Deliverables.js
-import React from 'react';
+import React, { useState } from "react";
 
-const Deliverables = ({ selectedPhases }) => {
-  const deliverablesData = {
-    'Product Selection': [
-      'Voice of Customer',
-      'Product Portfolio',
-      'Feasibility Study',
-      'Competitor Analysis',
+const Deliverables = ({ allPhases }) => {
+  const [newDeliverables, setNewDeliverables] = useState(
+    Object.fromEntries(
+      Object.keys(allPhases).map((phase) => [phase, ""])
+    )
+  );
+  const [deliverablesData, setDeliverablesData] = useState({
+    "Product Selection": [
+      { text: "Voice of Customer", isChecked: true, isDefault: true },
+      { text: "Product Portfolio", isChecked: true, isDefault: true },
+      { text: "Feasibility Study", isChecked: true, isDefault: true },
+      { text: "Competitor Analysis", isChecked: false },
     ],
-    'Study Phase': [
-      'Deliverable 1 for Study Phase',
-      'Deliverable 2 for Study Phase',
-      'Deliverable 3 for Study Phase',
+    "Study Phase": [
+      { text: "Information Collection", isChecked: true, isDefault: true },
+      { text: "Teardown Analysis", isChecked: true, isDefault: true },
+      { text: "Bom Analysis", isChecked: true, isDefault: true },
+      { text: "Functional Analysis", isChecked: true, isDefault: true },
+      { text: "Baseline Costing", isChecked: true, isDefault: true },
+      { text: "Benchmarking", isChecked: false },
     ],
-    'Ideation Phase': [
-      'Idea Generation',
-      'Idea Evaluation and Prioritization',
+    "Ideation Phase": [
+      { text: "Idea Generation", isChecked: true, isDefault: true },
+      { text: "Idea Evaluation and Prioritization", isChecked: true, isDefault: true },
     ],
-    'Development Phase': [
-      'Development Deliverable 1',
-      'Development Deliverable 2',
+    "Development Phase": [
+      { text: "Detailed Design", isChecked: true, isDefault: true },
+      { text: "Standardization", isChecked: true, isDefault: true },
+      {
+        text: "Should Cost For Modified Design",
+        isChecked: true,
+        isDefault: true,
+      },
+      { text: "DFMEA", isChecked: false },
+      {
+        text: "Sourcing / Alternate Sourcing",
+        isChecked: true,
+        isDefault: true,
+      },
+      { text: "Business Case Summary", isChecked: true, isDefault: true },
     ],
-    'Implementation Phase': [
-      'Implementation Deliverable 1',
-      'Implementation Deliverable 2',
+    "Implementation Phase": [
+      { text: "Tool Development Support", isChecked: true, isDefault: true },
+      { text: "Proto-Build Support", isChecked: true, isDefault: true },
+      { text: "Pre-Compliance Testing", isChecked: true, isDefault: true },
+      { text: "FAI", isChecked: true, isDefault: true },
+      { text: "Certification Support", isChecked: false },
     ],
+  });
+
+  const handleAddDeliverable = (phase) => {
+    if (newDeliverables[phase].trim() !== "") {
+      setDeliverablesData((prevDeliverablesData) => ({
+        ...prevDeliverablesData,
+        [phase]: [
+          ...prevDeliverablesData[phase],
+          {
+            text: newDeliverables[phase],
+            isChecked: deliverablesData[phase].some(
+              (deliverable) => deliverable.isDefault
+            )
+              ? true
+              : false,
+          },
+        ],
+      }));
+      setNewDeliverables((prevNewDeliverables) => ({
+        ...prevNewDeliverables,
+        [phase]: "",
+      }));
+    }
+  };
+
+  const handleCheckboxChange = (phase, index) => {
+    setDeliverablesData((prevDeliverablesData) => {
+      const updatedDeliverables = [...prevDeliverablesData[phase]];
+      updatedDeliverables[index] = {
+        ...updatedDeliverables[index],
+        isChecked: !updatedDeliverables[index].isChecked,
+      };
+      return { ...prevDeliverablesData, [phase]: updatedDeliverables };
+    });
+  };
+
+  const handleNextButtonClick = () => {
+    // Store the checked or unchecked deliverables data
+    console.log("Deliverables Data:", deliverablesData);
   };
 
   return (
     <div className="deliverables-container">
-      {Object.entries(selectedPhases).map(([phase, isChecked]) => (
+      {Object.entries(allPhases).map(([phase, isChecked]) => (
         isChecked && (
           <div key={phase} className="deliverables-sub-container">
-            <h3>{phase} Deliverables</h3>
+            <h3 className="sub-container-h3">{phase} Deliverables</h3>
             <ul className="deliverables-list">
               {deliverablesData[phase].map((deliverable, index) => (
-                <li key={index} className="deliverables-item">&#8226; {deliverable}</li>
+                <li key={index} className="deliverables-item">
+                  <input
+                    type="checkbox"
+                    checked={deliverable.isChecked}
+                    onChange={() => handleCheckboxChange(phase, index)}
+                    disabled={deliverable.isDefault}
+                  />
+                  <span>{deliverable.text}</span>
+                </li>
               ))}
             </ul>
+            <div>
+              <input
+                type="text"
+                className="deliverable-inputbox"
+                value={newDeliverables[phase]}
+                onChange={(e) =>
+                  setNewDeliverables((prevNewDeliverables) => ({
+                    ...prevNewDeliverables,
+                    [phase]: e.target.value,
+                  }))
+                }
+                placeholder="Add new deliverable"
+              />
+              <button onClick={() => handleAddDeliverable(phase)}>Add</button>
+            </div>
           </div>
         )
       ))}
+      <button className="next-button" onClick={handleNextButtonClick}>
+        Next
+      </button>
     </div>
   );
 };

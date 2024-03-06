@@ -2,12 +2,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure App takes at least the full viewport height */
+  margin-bottom: 100px;
+  min-height: fit-content /* Ensure App takes at least the full viewport height */
 }
 
 .product-list {
@@ -19,6 +21,7 @@ body {
 .product-list ul li{
   display:inline-block;
   border: 1px solid #0090ce;
+  border-radius: 2px 6px 2px 6px;
   padding: 10px;
   width: 200px;
   height: 30px;
@@ -129,7 +132,7 @@ body {
   font-size: 20px; /* Adjust font size as needed */
 }
 
-.right-pointer {
+.right-arrow {
   display: flex;
   align-items: center;
 }
@@ -158,6 +161,7 @@ body {
   margin-right: 20px; /* Adjust margin between sub-containers */
   margin-left: 20px;
   border: 1px solid #0090ce;
+  border-radius: 2px 6px 2px 6px;
   height: 100px;
   width: 120px; /* Adjust width as needed */
   padding: 15px;
@@ -205,11 +209,29 @@ body {
   justify-content: space-between;
 }
 
+.deliverable-inputbox{
+  width: 100%; /* Full width for the input box */
+  height: 20px;
+  border: 1px solid skyblue;
+  border-radius: 5px 10px 5px 10px;
+  background-color: #cdeff0d2;
+  margin: 5px 0;
+  padding-left: 5px;
+
+}
+.deliverable-inputbox:hover{
+  box-shadow: 0 0 8px 0 #0090ce inset, 0 0 10px 1px #0090ce;
+}
+
 .deliverables-sub-container {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: 200px; /* Adjust the width as needed */
+  margin: 20px; /* Adjust margin between sub-containers */
+  border: 1px solid #0090ce;
+  border-radius: 2px 6px 2px 6px;
+  width: 180px; /* Adjust width as needed */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .deliverables-list {
@@ -221,3 +243,29 @@ body {
 .deliverables-item {
   margin-top: 8px;
 }
+
+.sub-container-h3 {
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight: bold; /* Add font weight as needed */
+  margin-bottom: 10px; /* Adjust margin as needed */
+  text-align: center; /* Center text within the container */
+  
+}
+
+
+.deliverables-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.deliverables-item .deliverable-text {
+  font-size: 14px; /* Adjust font size as needed for deliverable text */
+  margin-top: 8px;
+}
+
+.add-button{
+  margin-top: 5px; /* Adjust margin for the add button */
+}
+
+
