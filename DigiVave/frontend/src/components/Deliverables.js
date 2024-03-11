@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Deliverables = ({ allPhases, selectedProduct }) => {
+  const navigate = useNavigate();
+
   const [newDeliverables, setNewDeliverables] = useState(
     Object.fromEntries(
       Object.keys(allPhases).map((phase) => [phase, ""])
@@ -113,6 +116,12 @@ const Deliverables = ({ allPhases, selectedProduct }) => {
     localStorage.setItem(selectedProduct, JSON.stringify(selectedData));
     // Log or send the selected data wherever needed
     console.log('Selected Data:', selectedData);
+
+     // Show an alert
+     window.alert('All data saved successfully!');
+
+     // Redirect to the main landing page
+     navigate('/');
   };
   
 
